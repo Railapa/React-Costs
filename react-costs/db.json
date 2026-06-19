@@ -1,0 +1,50 @@
+{
+  "projects": [
+    {
+      "name": "Raí Lapa",
+      "budget": "4",
+      "cost": 0,
+      "services": [],
+      "id": "M3cTKiIO3ak"
+    },
+    {
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": [],
+      "id": "iW9vutSJ05k"
+    },
+    {
+      "name": "Raí Lapa",
+      "budget": "3",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": [],
+      "id": "W4B2Ym7Z9s8"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Infra"
+    },
+    {
+      "id": "2",
+      "name": "Desenvolvimento"
+    },
+    {
+      "id": "3",
+      "name": "Design"
+    },
+    {
+      "id": "4",
+      "name": "Planejamento"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
