@@ -11,6 +11,7 @@ import { NavBar } from './components/Layout/NavBar'
 import { Container } from './components/Layout/Container'
 import {Footer} from './components/Layout/Footer'
 import { Projects } from './components/Pages/Projects'
+import { Project } from './components/Pages/Project'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/company' element={<Company />}></Route>
           <Route path='/contact' element={<Contact />}></Route>
           <Route path='/newproject' element={<NewProject />}></Route>
+          <Route path='/project/:id' element={<Project />}></Route>
         </Routes>
       </Container>
       <Footer></Footer>
