@@ -34,19 +34,19 @@ export const Projects = () => {
             .catch((err) => console.log(err))
     }, [])
 
-    function removeProject(id){
+    function removeProject(id) {
         fetch(`http://localhost:5000/projects/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'apllication/json'
             },
         }).then(resp => resp.json())
-        .then(data => {
-            setProjects(projects.filter((project) => project.id !== id))
-            console.log(data)
-            setProjectMessage('Projeto removido com sucesso')
-        })
-        .catch(err => console.log(err))
+            .then(data => {
+                setProjects(projects.filter((project) => project.id !== id))
+                console.log(data)
+                setProjectMessage('Projeto removido com sucesso')
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -60,16 +60,16 @@ export const Projects = () => {
             <Container custonClass='start'>
                 {projects.length > 0 &&
                     projects.map((project) => (
-                        <ProjectCard name={project.name} 
-                        id={project.id} 
-                        budget={project.budget} 
-                        category={project.category?.name}
-                        key={project.id}
-                        handleRemove={removeProject}
+                        <ProjectCard name={project.name}
+                            id={project.id}
+                            budget={project.budget}
+                            category={project.category?.name}
+                            key={project.id}
+                            handleRemove={removeProject}
                         />
                     ))
                 }
-                {!removeLoading && <Loading/>}
+                {!removeLoading && <Loading />}
                 {removeLoading && projects.length === 0 && (
                     <p>Não há projetos cadastrados</p>
                 )}
