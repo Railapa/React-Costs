@@ -3,13 +3,20 @@ import styles from './Project.module.css'
 import { useEffect, useState } from 'react'
 import { Loading } from '../Layout/Loading'
 import { Container } from '../Layout/Container'
+import ProjectForm from '../Projects/ProjectForm'
+import { Message } from '../Layout/Message'
+import { ServiceForm } from '../Service/ServiceForm'
+import { parse, v4 as uuidv4 } from 'uuid'
 
 export const Project = () => {
 
     const { id } = useParams()
 
     const [project, setProject] = useState([])
-    const [showProjectForm, setshowProjectForm] = useState(false)
+    const [showProjectForm, setShowProjectForm] = useState(false)
+    const [showServiceForm, setShowServiceForm] = useState(false)
+    const [message, setMessage] = useState()
+    const [type, setType] = useState()
 
     useEffect(() => {
         fetch(`http://localhost:5000/projects/${id}`, {
@@ -25,8 +32,70 @@ export const Project = () => {
             .catch(err => console.log(err))
     }, [id])
 
+    function editPost(project) {
+        setMessage('')
+
+        if (project.budget < project.cost) {
+            setMessage('O orçamento não pode ser menor que o custo do projeto!')
+            setType('error')
+            return false
+        }
+
+        fetch(`http://localhost:5000/projects/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(project),
+        })
+            .then(resp => resp.json())
+            .then((data) => {
+                setProject(data)
+                setShowProjectForm(false)
+                setMessage('Projeto atualizado!')
+                setType('success')
+            })
+            .catch(err => console.log(err))
+    }
+
+    function createService(project) {
+        setMessage('')
+        const lastService = project.services[project.services.length - 1]
+
+        lastService.id = uuidv4()
+
+        const lastServiceCost = lastService.cost
+
+        const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+        if (newCost > parseFloat(project.budget)) {
+            setMessage('Orçamento ultrapassado, verifique o valor do serviço.')
+            setType('error')
+            project.services.pop()
+            return false
+        }
+
+        project.cost = newCost
+
+        fetch(`http://localhost:5000/projects/${project.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(project),
+        }).then(resp => resp.json())
+            .then((data) => {
+                console.log(data)
+            })
+            .catch(err => console.log(err))
+    }
+
     function toggleProjectForm() {
-        setshowProjectForm(!showProjectForm)
+        setShowProjectForm(!showProjectForm)
+    }
+
+    function toggleServiceForm() {
+        setShowServiceForm(!showServiceForm)
     }
 
     return (
@@ -34,6 +103,7 @@ export const Project = () => {
             {project.name ? (
                 <div className={styles.project_details}>
                     <Container customClass='column'>
+                        {message && <Message type={type} msg={message} />}
                         <div className={styles.details_container}>
                             <h1>Projeto: {project.name}</h1>
                             <button onClick={toggleProjectForm} className={styles.btn}>{!showProjectForm ? 'Editar projeto' : 'Fechar'}</button>
@@ -44,20 +114,37 @@ export const Project = () => {
                                         <span>Categoria: </span> {project.category.name}
                                     </p>
                                     <p>
-                                        <span>Total de Orçamento:</span> R${project.budget} 
+                                        <span>Total de Orçamento:</span> R${project.budget}
                                     </p>
                                     <p>
-                                        <span>Total Utilizado:</span> R${project.cost} 
+                                        <span>Total Utilizado:</span> R${project.cost}
                                     </p>
                                 </div>
                             ) : (
                                 <div className={styles.form}>
                                     <p>
-                                        Detalhes do projeto
+                                        <ProjectForm
+                                            handleSubmit={editPost} btnText='Concluir Edição' projectData={project}
+                                        />
                                     </p>
                                 </div>
                             )}
                         </div>
+
+                        <div className={styles.service_form_container}>
+                            <h2>Adicone um serviço</h2>
+                            <button onClick={toggleServiceForm} className={styles.btn}>{!showServiceForm ? 'Adicionar Serviço' : 'Fechar'}</button>
+
+                            <div className={styles.form}>
+                                {showServiceForm && (
+                                    <ServiceForm handleSubmit={createService} btnText='Adicionar serviço' projectData={project} />
+                                )}
+                            </div>
+                        </div>
+                        <h2>Serviços</h2>
+                        <Container customClass='start'>
+                            <p>Itens de Serviços</p>
+                        </Container>
                     </Container>
                 </div>
             )
