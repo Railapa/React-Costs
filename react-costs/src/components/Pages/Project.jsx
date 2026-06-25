@@ -88,7 +88,15 @@ export const Project = () => {
             body: JSON.stringify(project),
         }).then(resp => resp.json())
             .then((data) => {
-                console.log(data)
+                // CORREÇÃO: Atualiza os estados para atualizar a tela na hora!
+                setProject(data)
+                setServices(data.services)
+                setMessage('Serviço adicionado com sucesso!')
+                setType('success')
+
+                // Opcional: Se você quiser que o formulário feche sozinho igual ao do professor,
+                // descomente a linha abaixo. Se quiser que fique aberto, deixe comentada.
+                // setShowServiceForm(false) 
             })
             .catch(err => console.log(err))
     }
@@ -98,7 +106,7 @@ export const Project = () => {
             (service) => service.id !== id,
         )
 
-        const projectUpdated = {...project}
+        const projectUpdated = { ...project }
 
         projectUpdated.services = servicesUpdated
         projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)

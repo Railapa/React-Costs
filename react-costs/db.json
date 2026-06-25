@@ -1,17 +1,6 @@
 {
   "projects": [
     {
-      "name": "TZ Consultoria",
-      "budget": "10000",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 0,
-      "services": [],
-      "id": "7qeM1yeVLBM"
-    },
-    {
       "name": "TLP Tech",
       "budget": "5000",
       "category": {
@@ -21,6 +10,26 @@
       "cost": 0,
       "services": [],
       "id": "XfKqS3voN3Y"
+    },
+    {
+      "name": "Teste projeto",
+      "budget": "50000",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": null,
+      "services": [
+        {
+          "id": "85172ed0-7530-40c7-93fb-abbf31817e01"
+        }
+      ],
+      "id": "sTcFA02Lwek"
+    },
+    {
+      "cost": 0,
+      "services": [],
+      "id": "VcvzIm3Otzg"
     }
   ],
   "categories": [
