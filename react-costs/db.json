@@ -2,56 +2,25 @@
   "projects": [
     {
       "name": "TZ Consultoria",
-      "budget": "12000",
+      "budget": "10000",
       "category": {
-        "id": "4",
-        "name": "Planejamento"
+        "id": "1",
+        "name": "Infra"
       },
-      "cost": 1600,
-      "services": [
-        {
-          "name": "teste",
-          "cost": "250",
-          "description": "teste add",
-          "id": "9413486f-82ad-47bc-87ef-32f133aeca03"
-        },
-        {
-          "name": "teste",
-          "cost": "250",
-          "description": "teste add",
-          "id": "9413486f-82ad-47bc-87ef-32f133aeca03"
-        },
-        {
-          "name": "Raí Lapa",
-          "cost": "150",
-          "description": "fgyhbvfcrtyujn bvfctgyhj",
-          "id": "d724a18b-45ad-445a-841f-3e81a0c24b0f"
-        },
-        {
-          "name": "Raí Lapa",
-          "cost": "150",
-          "description": "fgyhbvfcrtyujn bvfctgyhj",
-          "id": "d724a18b-45ad-445a-841f-3e81a0c24b0f"
-        },
-        {
-          "name": "Raí Lapa de Souza",
-          "cost": "800",
-          "description": "adsfsdf",
-          "id": "0c2af0d5-0268-4d59-90f2-319fc3a71db8"
-        }
-      ],
-      "id": "oLquNpT4SO0"
+      "cost": 0,
+      "services": [],
+      "id": "7qeM1yeVLBM"
     },
     {
       "name": "TLP Tech",
-      "budget": "2500",
+      "budget": "5000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
       "cost": 0,
       "services": [],
-      "id": "XSMCyMbIzMI"
+      "id": "XfKqS3voN3Y"
     }
   ],
   "categories": [
