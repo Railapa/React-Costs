@@ -1,17 +1,17 @@
 import { Message } from "../Layout/Message"
 import { useLocation } from 'react-router-dom'
-import styles from './Projects.module.css'
+import { useState, useEffect } from 'react'
 import { Container } from '../Layout/Container'
 import { LinkButton } from '../Layout/LinkButton'
-import { ProjectCard } from "../Projects/ProjectCard"
-import { useState, useEffect } from "react"
-import { Loading } from "../Layout/Loading"
+import { ProjectCard } from '../Projects/ProjectCard'
+import styles from './Projects.module.css'
 
 export const Projects = () => {
-
     const [projects, setProjects] = useState([])
-    const [removeLoading, setRemoveLoading] = useState(false)
-    const [projectMessage, setProjectMessage] = useState(``)
+    const [activeFilter, setActiveFilter] = useState('Todos')
+    
+    // 1. ESTADO PARA A PESQUISA POR NOME
+    const [searchTerm, setSearchTerm] = useState('')
 
     const location = useLocation()
     let message = ''
@@ -23,13 +23,12 @@ export const Projects = () => {
         fetch('http://localhost:5000/projects', {
             method: 'GET',
             headers: {
-                'Content-Type': 'apllication/json'
-            }
-        }).then(resp => resp.json())
-            .then(data => {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
                 setProjects(data)
-                console.log(data)
-                setRemoveLoading(true)
             })
             .catch((err) => console.log(err))
     }, [])
@@ -38,40 +37,69 @@ export const Projects = () => {
         fetch(`http://localhost:5000/projects/${id}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'apllication/json'
-            },
-        }).then(resp => resp.json())
-            .then(data => {
-                setProjects(projects.filter((project) => project.id !== id))
-                console.log(data)
-                setProjectMessage('Projeto removido com sucesso')
-            })
-            .catch(err => console.log(err))
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(resp => resp.json())
+        .then(() => {
+            setProjects(projects.filter((project) => project.id !== id))
+        })
+        .catch(err => console.log(err))
     }
+
+    const filteredProjects = projects.filter((project) => {
+        const matchesCategory = activeFilter === 'Todos' || project.category?.name === activeFilter
+        const matchesName = project.name?.toLowerCase().includes(searchTerm.toLowerCase())
+        
+        return matchesCategory && matchesName
+    })
 
     return (
         <div className={styles.project_container}>
             <div className={styles.title_container}>
                 <h1>Meus Projetos</h1>
-                <LinkButton to='/newproject' text='Criar Projeto' />
+                <LinkButton to="/newproject" text="Criar Projeto" />
             </div>
+
             {message && <Message msg={message} type='success' />}
-            {projectMessage && <Message msg={projectMessage} type='error' />}
-            <Container custonClass='start'>
-                {projects.length > 0 &&
-                    projects.map((project) => (
-                        <ProjectCard name={project.name}
+
+            <div className={styles.toolbar_container}>
+                <input 
+                    type="text" 
+                    placeholder="Pesquisar projeto por nome..."
+                    className={styles.search_input}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+
+                <div className={styles.filter_container}>
+                    {['Todos', 'Infra', 'Desenvolvimento', 'Design', 'Planejamento'].map((category) => (
+                        <button
+                            key={category}
+                            className={`${styles.filter_btn} ${activeFilter === category ? styles.active : ''}`}
+                            onClick={() => setActiveFilter(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <Container customClass='start'>
+                {filteredProjects.length > 0 &&
+                    filteredProjects.map((project) => (
+                        <ProjectCard
                             id={project.id}
+                            name={project.name}
                             budget={project.budget}
                             category={project.category?.name}
                             key={project.id}
                             handleRemove={removeProject}
                         />
-                    ))
-                }
-                {!removeLoading && <Loading />}
-                {removeLoading && projects.length === 0 && (
-                    <p>Não há projetos cadastrados</p>
+                    ))}
+
+                {filteredProjects.length === 0 && (
+                    <p>Nenhum projeto encontrado para a sua busca.</p>
                 )}
             </Container>
         </div>

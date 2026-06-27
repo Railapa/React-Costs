@@ -1,35 +1,37 @@
 {
   "projects": [
     {
+      "name": "TZ Consultoria 2",
+      "budget": "500000",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": 0,
+      "services": [],
+      "id": "ls3uibv08MM"
+    },
+    {
       "name": "TLP Tech",
-      "budget": "5000",
+      "budget": "6000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
       "cost": 0,
       "services": [],
-      "id": "XfKqS3voN3Y"
+      "id": "fTBYm76DgIM"
     },
     {
-      "name": "Teste projeto",
-      "budget": "50000",
+      "name": "Teste",
+      "budget": "2000",
       "category": {
-        "id": "3",
-        "name": "Design"
+        "id": "2",
+        "name": "Desenvolvimento"
       },
-      "cost": null,
-      "services": [
-        {
-          "id": "85172ed0-7530-40c7-93fb-abbf31817e01"
-        }
-      ],
-      "id": "sTcFA02Lwek"
-    },
-    {
       "cost": 0,
       "services": [],
-      "id": "VcvzIm3Otzg"
+      "id": "sNGJAi3Br5I"
     }
   ],
   "categories": [

@@ -7,3 +7,55 @@
     justify-content: space-between;
     margin-bottom: 2em;
 }
+
+.toolbar_container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.search_input {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #222;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #222;
+  outline: none;
+  width: 100%;
+  max-width: 400px; 
+  transition: border-color 0.3s;
+}
+
+.search_input:focus {
+  border-color: #ffbb33; 
+}
+
+.filter_container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter_btn {
+  background-color: #222;
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.filter_btn:hover {
+  color: #ffbb33;
+}
+
+.filter_btn.active {
+  background-color: #fff;
+  color: #ffbb33;
+  border-color: #ffbb33;
+}

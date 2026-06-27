@@ -20,10 +20,15 @@ function ProjectForm ({ handleSubmit, btnText, projectData }){
             .catch((err) => console.log(err))
     }, [])
 
-    const submit = (e) =>{
-        e.preventDefault()
-        handleSubmit(project)
+    const submit = (e) => {
+    e.preventDefault()
+    if (!project.name?.trim() || !project.budget || !project.category?.id) {
+        alert('Por favor, preencha todos os campos antes de criar ou editar o projeto!')
+        return
     }
+    
+    handleSubmit(project)
+}
 
     function handleChange(e){
         setProject({...project, [e.target.name]: e.target.value})

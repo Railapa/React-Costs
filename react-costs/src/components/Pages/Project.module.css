@@ -46,3 +46,18 @@
 .form {
   width: 100%;
 }
+
+.progress_bar_container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  height: 12px;
+  margin: 15px 0 5px 0;
+  overflow: hidden;
+}
+
+.progress_bar_fill {
+  height: 100%;
+  width: 0%; 
+  transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out; 
+}

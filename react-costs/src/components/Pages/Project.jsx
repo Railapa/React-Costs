@@ -62,39 +62,44 @@ export const Project = () => {
     }
 
     function createService(project) {
-        setMessage('')
-        const lastService = project.services[project.services.length - 1]
+    setMessage('')
 
-        lastService.id = uuidv4()
-
-        const lastServiceCost = lastService.cost
-
-        const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
-
-        if (newCost > parseFloat(project.budget)) {
-            setMessage('Orçamento ultrapassado, verifique o valor do serviço.')
-            setType('error')
-            project.services.pop()
-            return false
-        }
-
-        project.cost = newCost
-
-        fetch(`http://localhost:5000/projects/${project.id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(project),
-        }).then(resp => resp.json())
-            .then((data) => {
-                setProject(data)
-                setServices(data.services)
-                setMessage('Serviço adicionado com sucesso!')
-                setType('success')
-            })
-            .catch(err => console.log(err))
+    if ((parseFloat(project.cost) || 0) >= parseFloat(project.budget)) {
+        alert('Atenção: O orçamento deste projeto já foi 100% utilizado! Não é possível adicionar novos serviços.')
+        project.services.pop() 
+        return false
     }
+
+    const lastService = project.services[project.services.length - 1]
+    lastService.id = uuidv4()
+
+    const lastServiceCost = lastService.cost
+    const newCost = (parseFloat(project.cost) || 0) + parseFloat(lastServiceCost)
+
+    if (newCost > parseFloat(project.budget)) {
+        setMessage('Orçamento ultrapassado, verifique o valor do serviço.')
+        setType('error')
+        project.services.pop()
+        return false
+    }
+
+    project.cost = newCost
+
+    fetch(`http://localhost:5000/projects/${project.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(project),
+    }).then(resp => resp.json())
+        .then((data) => {
+            setProject(data)
+            setServices(data.services)
+            setMessage('Serviço adicionado com sucesso!')
+            setType('success')
+        })
+        .catch(err => console.log(err))
+}
 
     function removeService(id, cost) {
         const servicesUpdated = project.services.filter(
@@ -131,6 +136,20 @@ export const Project = () => {
         setShowServiceForm(!showServiceForm)
     }
 
+
+    const totalBudget = parseFloat(project.budget) || 0
+    const currentCost = parseFloat(project.cost) || 0
+
+    const percent = totalBudget > 0 ? Math.min((currentCost / totalBudget) * 100, 100) : 0
+
+    let progressBarColor = '#22c55e'
+
+    if (percent > 80) {
+        progressBarColor = '#ef4444'
+    } else if (percent > 50) {
+        progressBarColor = '#eab308'
+    }
+
     return (
         <>
             {project.name ? (
@@ -152,15 +171,23 @@ export const Project = () => {
                                     <p>
                                         <span>Total Utilizado:</span> R${project.cost}
                                     </p>
+
+                                    <div className={styles.progress_bar_container}>
+                                        <div
+                                            className={styles.progress_bar_fill}
+                                            style={{
+                                                width: `${percent}%`,
+                                                backgroundColor: progressBarColor
+                                            }}
+                                        ></div>
+                                    </div>
+                                    <small style={{ color: '#7a7a7a', fontWeight: 'bold' }}>
+                                        {percent.toFixed(0)}% do orçamento utilizado
+                                    </small>
+
                                 </div>
                             ) : (
-                                <div className={styles.form}>
-                                    <p>
-                                        <ProjectForm
-                                            handleSubmit={editPost} btnText='Concluir Edição' projectData={project}
-                                        />
-                                    </p>
-                                </div>
+                                <ProjectForm handleSubmit={editPost} btnText='Concluir edição' projectData={project} />
                             )}
                         </div>
 
