@@ -1,4 +1,4 @@
-import styles from '../Projects/ProjectCard.module.css'
+import styles from '../Service/ServiceCard.module.css'
 
 import { BsFillTrashFill } from 'react-icons/bs'
 
@@ -9,13 +9,13 @@ export const ServiceCard = ({ id, name, cost, description, handleRemove }) => {
   }
 
   return (
-    <div className={styles.project_card}>
+    <div className={styles.service_card}>
       <h4>{name}</h4>
       <p>
         <span>Custo total:</span> R${cost}
       </p>
       <p>{description}</p>
-      <div className={styles.project_card_actions}>
+      <div className={styles.service_card_actions}>
         <button onClick={remove}>
           <BsFillTrashFill />
           Excluir

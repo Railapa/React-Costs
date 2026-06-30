@@ -1,37 +1,51 @@
 {
   "projects": [
     {
-      "name": "TZ Consultoria 2",
-      "budget": "500000",
+      "name": "TZ Consultoria",
+      "budget": "20000",
       "category": {
-        "id": "3",
-        "name": "Design"
+        "id": "1",
+        "name": "Infra"
       },
-      "cost": 0,
-      "services": [],
-      "id": "ls3uibv08MM"
+      "cost": 3500,
+      "services": [
+        {
+          "name": "Contratar dev front end",
+          "cost": "3500",
+          "description": "dev front ent para criar o site",
+          "id": "20efffb5-7fef-431a-a93e-f4ae6a8a87c0"
+        }
+      ],
+      "id": "WzjXauQygmA"
     },
     {
       "name": "TLP Tech",
-      "budget": "6000",
+      "budget": "20000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 0,
-      "services": [],
-      "id": "fTBYm76DgIM"
+      "cost": 2000,
+      "services": [
+        {
+          "name": "Teste",
+          "cost": "2000",
+          "description": "teste descrição",
+          "id": "712018ab-ce44-4f26-a53a-5615c8329dd2"
+        }
+      ],
+      "id": "OJZ9hyv1tPA"
     },
     {
       "name": "Teste",
-      "budget": "2000",
+      "budget": "5000",
       "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
+        "id": "4",
+        "name": "Planejamento"
       },
       "cost": 0,
       "services": [],
-      "id": "sNGJAi3Br5I"
+      "id": "7ZbboKN1UAc"
     }
   ],
   "categories": [

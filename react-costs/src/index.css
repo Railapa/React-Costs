@@ -9,3 +9,28 @@ html, body, #root{
   background-color: #efefef;
   height: 100%;
 }
+
+:root {
+  --bg-primary: #efefef;
+  --bg-card: #ffffff;
+  --text-color: #222222;
+  --text-secondary: #7a7a7a;
+  --border-card: #7a7a7a;
+}
+
+[data-theme='dark'] {
+  --bg-primary: #121214;    
+  --bg-card: #1e1e24;        
+  --text-color: #f5f5f7;    
+  --text-secondary: #a0a0b0; 
+  --border-card: #333339;   
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease; 
+}

@@ -1,5 +1,7 @@
-.project_container{
+.project_container {
     padding: 2em;
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .title_container{
@@ -58,4 +60,32 @@
   background-color: #fff;
   color: #ffbb33;
   border-color: #ffbb33;
+}
+
+@media (max-width: 768px) {
+  .toolbar_container {
+    align-items: center;
+    width: 100%;
+  }
+
+  .search_input {
+    max-width: 100%; 
+  }
+
+  .filter_container {
+    justify-content: center; 
+    gap: 8px;
+  }
+
+  .filter_btn {
+    padding: 6px 12px; 
+    font-size: 0.9rem;
+  }
+
+  .title_container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
 }

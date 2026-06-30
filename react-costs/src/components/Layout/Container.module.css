@@ -1,20 +1,21 @@
-.container{
-    width: 1200px; 
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    flex-wrap: wrap;
+.container {
+  width: 100%; 
+  max-width: 1200px; 
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  padding: 0 20px; 
+  box-sizing: border-box; 
 }
 
-.min-height{
-    min-height: 75%;
+.start {
+  justify-content: flex-start;
+  width: 100%;
 }
 
-.start{
-    justify-content: flex-start;
-}
-
-.column{
-    flex-direction: column;
-    justify-content: flex-start;
+.column {
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%; 
 }
