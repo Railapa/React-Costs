@@ -1,18 +1,18 @@
 .newproject_container {
   width: 100%;
-  max-width: 500px; 
-  margin: 0 auto; 
-  padding: 3em 1.5em; 
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 3em 1.5em;
   box-sizing: border-box;
 }
 
 .newproject_container h1 {
   margin-bottom: 0.3em;
   font-size: 2.3rem;
-  color: #222;
+  color: var(--text-color);       
 }
 
 .newproject_container p {
-  color: #7a7a7a;
-  margin-bottom: 2.5em; 
+  color: var(--text-secondary);   
+  margin-bottom: 2.5em;
 }
