@@ -2,6 +2,8 @@
   padding: 2em;
   width: 100%; 
   box-sizing: border-box;
+  background-color: var(--bg-card); 
+  border-radius: 5px;               
 }
 
 .project_details h1,
@@ -40,18 +42,20 @@
 }
 
 .btn {
-  background-color: #222;
-  color: #fff;
+  background-color: var(--bg-card);
+  color: var(--text-color);
+  border: 1px solid var(--text-color); 
   padding: 0.5em 1em;
   text-decoration: none;
   transition: 0.5s;
-  border: none;
   cursor: pointer;
   max-height: 40px;
+  border-radius: 5px;
 }
 
 .btn:hover {
   color: #ffbb33;
+  border-color: #ffbb33;
 }
 
 .form {

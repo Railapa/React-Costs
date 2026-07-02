@@ -181,7 +181,7 @@ export const Project = () => {
                                             }}
                                         ></div>
                                     </div>
-                                    <small style={{ color: '#7a7a7a', fontWeight: 'bold' }}>
+                                    <small style={{ color: 'var(--text-secondary)', fontWeight: 'bold' }}>
                                         {percent.toFixed(0)}% do orçamento utilizado
                                     </small>
 

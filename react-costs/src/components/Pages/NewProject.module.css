@@ -4,6 +4,8 @@
   margin: 0 auto;
   padding: 3em 1.5em;
   box-sizing: border-box;
+  background-color: var(--bg-card); 
+  border-radius: 5px;               
 }
 
 .newproject_container h1 {
