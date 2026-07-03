@@ -5,7 +5,7 @@ import { Container } from './Container'
 import { ThemeContext } from './ThemeContext' 
 import { BsSunFill, BsMoonFill } from 'react-icons/bs'
 import logo from '../../imgs/costs_logo.png'
-import styles from './Navbar.module.css'
+import styles from './NavBar.module.css'
 
 export const NavBar = () => {
     const { theme, toggleTheme } = useContext(ThemeContext)
