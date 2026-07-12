@@ -4,7 +4,7 @@ import Select from '../Form/Select'
 import SubmitButton from '../Form/SubmitButton'
 import { useEffect, useState } from 'react'
 
-function ProjectForm ({ handleSubmit, btnText, projectData }){
+function ProjectForm({ handleSubmit, btnText, projectData }) {
 
     const [categories, setCategories] = useState([])
     const [project, setProject] = useState(projectData || {})
@@ -21,24 +21,36 @@ function ProjectForm ({ handleSubmit, btnText, projectData }){
     }, [])
 
     const submit = (e) => {
-    e.preventDefault()
-    if (!project.name?.trim() || !project.budget || !project.category?.id) {
-        alert('Por favor, preencha todos os campos antes de criar ou editar o projeto!')
-        return
-    }
-    
-    handleSubmit(project)
-}
+        e.preventDefault()
 
-    function handleChange(e){
-        setProject({...project, [e.target.name]: e.target.value})
+        if (!project.name?.trim() || !project.budget || !project.category?.id) {
+            alert('Por favor, preencha todos os campos antes de criar ou editar o projeto!')
+            return
+        }
+
+        const projectToSubmit = {
+            ...project,
+            budget: Number(project.budget),
+            category: {
+                id: Number(project.category.id),
+                name: project.category.name
+            }
+        }
+
+        handleSubmit(projectToSubmit)
     }
 
-    function handleCategory(e){
-        setProject({...project, category: {
-            id: e.target.value,
-            name: e.target.options[e.target.selectedIndex].text,
-        }})
+    function handleChange(e) {
+        setProject({ ...project, [e.target.name]: e.target.value })
+    }
+
+    function handleCategory(e) {
+        setProject({
+            ...project, category: {
+                id: e.target.value,
+                name: e.target.options[e.target.selectedIndex].text,
+            }
+        })
     }
 
     return (
@@ -46,26 +58,26 @@ function ProjectForm ({ handleSubmit, btnText, projectData }){
             <Input type='text'
                 text='Nome do Projeto'
                 name='name'
-                placeholder='Insira o nome do projeto' 
+                placeholder='Insira o nome do projeto'
                 handleOnChange={handleChange}
                 value={project.name ? project.name : ''}
-                />
+            />
             <div>
                 <Input type='number'
                     text='Orçamento do Projeto'
                     name='budget'
-                    placeholder='Insira o orçamento total' 
+                    placeholder='Insira o orçamento total'
                     handleOnChange={handleChange}
                     value={project.budget ? project.budget : ''}
-                    />
+                />
             </div>
             <div>
                 <Select name='category_id'
-                    text='Selecione a categora' 
-                    options={categories} 
+                    text='Selecione a categora'
+                    options={categories}
                     handleOnChange={handleCategory}
                     value={project.category ? project.category.id : ''}
-                    />
+                />
             </div>
             <div>
                 <SubmitButton text={btnText} />
