@@ -58,7 +58,7 @@
 }
 
 .filter_btn.active {
-  background-color: transparent;        
+  background-color: #222;        
   color: #ffbb33;                      
   border-color: #ffbb33;                
 }

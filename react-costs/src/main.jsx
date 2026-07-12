@@ -10,23 +10,20 @@ import { Container } from './components/Layout/Container'
 import { Footer } from './components/Layout/Footer'
 import { Projects } from './components/Pages/Projects'
 import { Project } from './components/Pages/Project'
-import { ThemeProvider } from './components/Layout/ThemeContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider>
-      <BrowserRouter>
-        <NavBar></NavBar>
-        <Container customClass='min-height'>
-          <Routes>
-            <Route path='/' element={<Home />}></Route>
-            <Route path='/projects' element={<Projects />}></Route>
-            <Route path='/newproject' element={<NewProject />}></Route>
-            <Route path='/project/:id' element={<Project />}></Route>
-          </Routes>
-        </Container>
-        <Footer></Footer>
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <NavBar></NavBar>
+      <Container customClass='min-height'>
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/projects' element={<Projects />}></Route>
+          <Route path='/newproject' element={<NewProject />}></Route>
+          <Route path='/project/:id' element={<Project />}></Route>
+        </Routes>
+      </Container>
+      <Footer></Footer>
+    </BrowserRouter>
   </StrictMode>,
 )

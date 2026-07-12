@@ -1,9 +1,5 @@
 .project_details {
   padding: 2em;
-  width: 100%; 
-  box-sizing: border-box;
-  background-color: var(--bg-card); 
-  border-radius: 5px;               
 }
 
 .project_details h1,
@@ -18,22 +14,13 @@
   padding: 0.4em;
 }
 
-.project_details h2 {
-  color: var(--text-color);
-}
-
-.project_details p {
-  color: var(--text-secondary);
-}
-
 .project_details span {
   font-weight: bold;
-  color: var(--text-color);
 }
 
 .details_container,
 .service_form_container {
-  border-bottom: 1px solid var(--border-card); 
+  border-bottom: 1px solid #7a7a7a;
   padding-bottom: 1.2em;
   margin-bottom: 1.2em;
   display: flex;
@@ -42,26 +29,23 @@
 }
 
 .btn {
-  background-color: var(--bg-card);
-  color: var(--text-color);
-  border: 1px solid var(--text-color); 
+  background-color: #222;
+  color: #fff;
   padding: 0.5em 1em;
   text-decoration: none;
   transition: 0.5s;
+  border: none;
   cursor: pointer;
   max-height: 40px;
-  border-radius: 5px;
 }
 
 .btn:hover {
   color: #ffbb33;
-  border-color: #ffbb33;
 }
 
 .form {
   width: 100%;
 }
-
 .progress_bar_container {
   width: 100%;
   background-color: var(--border-card); 

@@ -7,15 +7,8 @@
         "id": "1",
         "name": "Infra"
       },
-      "cost": 3500,
-      "services": [
-        {
-          "name": "Contratar dev front end",
-          "cost": "3500",
-          "description": "dev front ent para criar o site",
-          "id": "20efffb5-7fef-431a-a93e-f4ae6a8a87c0"
-        }
-      ],
+      "cost": 0,
+      "services": [],
       "id": "WzjXauQygmA"
     },
     {
@@ -25,16 +18,33 @@
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 2000,
+      "cost": 15000,
       "services": [
         {
-          "name": "Teste",
-          "cost": "2000",
-          "description": "teste descrição",
-          "id": "712018ab-ce44-4f26-a53a-5615c8329dd2"
+          "name": "TZ Consultoria",
+          "cost": "10000",
+          "description": "fgyhbvfcrtyujn bvfctgyhj",
+          "id": "65ae9a9c-b705-4a21-8ba0-dd33e4e9358e"
+        },
+        {
+          "name": "TZ Consultoria",
+          "cost": "5000",
+          "description": "fgyhbvfcrtyujn bvfctgyhj",
+          "id": "19b7b33e-e5f9-459d-b3f1-3a2f2b40abbd"
         }
       ],
       "id": "OJZ9hyv1tPA"
+    },
+    {
+      "name": "erfer",
+      "budget": "2423",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": [],
+      "id": "Y4Zfoet64q4"
     }
   ],
   "categories": [

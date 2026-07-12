@@ -5,20 +5,16 @@
 }
 
 .form_control label {
-  margin-bottom: .6em;
+  margin-bottom: 0.6em;
   font-weight: bold;
-  color: var(--text-color);            
 }
 
 .form_control input {
-  padding: .7em;
-  border-radius: 5px;            
-  border: 1px solid var(--border-card); 
-  background-color: var(--bg-card);   
-  color: var(--text-color);           
-  outline: none;
+  padding: 0.7em;
+  border-radius: 0;
+  border: none;
 }
 
 .form_control input::placeholder {
-  color: var(--text-secondary);         
+  color: #7b7b7b;
 }

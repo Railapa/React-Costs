@@ -8,7 +8,6 @@ export function NewProject() {
     const navigate = useNavigate()
 
     function createPost(project) {
-        // initialize cost and services
         project.cost = 0
         project.services = []
 
