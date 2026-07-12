@@ -10,7 +10,7 @@ function ProjectForm ({ handleSubmit, btnText, projectData }){
     const [project, setProject] = useState(projectData || {})
 
     useEffect(() => {
-        fetch('https://6a53d5038547b9f7111bd75e.mockapi.io/:endpoint', {
+        fetch('https://6a53d5038547b9f7111bd75e.mockapi.io/categories', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

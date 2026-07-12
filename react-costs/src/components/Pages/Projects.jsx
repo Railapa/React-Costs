@@ -20,7 +20,7 @@ export const Projects = () => {
     }
 
     useEffect(() => {
-        fetch('https://6a53d5038547b9f7111bd75e.mockapi.io/:endpoint', {
+        fetch('https://6a53d5038547b9f7111bd75e.mockapi.io/projects', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

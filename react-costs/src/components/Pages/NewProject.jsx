@@ -11,7 +11,7 @@ export function NewProject() {
         project.cost = 0
         project.services = []
 
-        fetch('https://6a53d5038547b9f7111bd75e.mockapi.io/:endpoint', {
+        fetch('https://6a53d5038547b9f7111bd75e.mockapi.io/projects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
