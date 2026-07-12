@@ -21,7 +21,7 @@ export const Project = () => {
     const [type, setType] = useState()
 
     useEffect(() => {
-        fetch(`http://localhost:5000/projects/${id}`, {
+        fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ export const Project = () => {
             return false
         }
 
-        fetch(`http://localhost:5000/projects/${id}`, {
+        fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ export const Project = () => {
 
     project.cost = newCost
 
-    fetch(`http://localhost:5000/projects/${project.id}`, {
+    fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${project.id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -111,7 +111,7 @@ export const Project = () => {
         projectUpdated.services = servicesUpdated
         projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
 
-        fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+        fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${projectUpdated.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

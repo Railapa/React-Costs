@@ -20,7 +20,7 @@ export const Projects = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/projects', {
+        fetch('https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${projectUpdated.id}', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export const Projects = () => {
     }, [])
 
     function removeProject(id) {
-        fetch(`http://localhost:5000/projects/${id}`, {
+        fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
