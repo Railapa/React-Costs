@@ -61,9 +61,20 @@
   transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out; 
 }
 
+.details_container form {
+  width: 100%;
+  margin-top: 1.5em;
+}
+
 @media (max-width: 768px) {
   .project_details {
     padding: 1.5em 1em !important;
+  }
+
+  .project_details h1 {
+    font-size: 1.8rem;     
+    width: 100%;
+    text-align: center;
   }
 
   .details_container, 

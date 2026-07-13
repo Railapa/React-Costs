@@ -1,9 +1,12 @@
 .container {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px; 
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .start {
@@ -16,5 +19,5 @@
 }
 
 .min-height {
-  min-height: 75%;
+  min-height: 75vh;
 }
