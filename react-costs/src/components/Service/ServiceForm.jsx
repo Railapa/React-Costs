@@ -10,13 +10,23 @@ export const ServiceForm = ({ handleSubmit, projectData }) => {
     const submit = (e) => {
         e.preventDefault()
 
-        if (!service.name?.trim() || !service.cost) {
+        if (!service.name || !service.cost) {
             alert('Por favor, preencha o nome e o custo do serviço!')
             return 
         }
 
-        projectData.services.push(service)
-        handleSubmit(projectData)
+        const formattedService = {
+            name: service.name,
+            cost: parseFloat(service.cost),
+            description: service.description || ''
+        }
+
+        const updatedProject = {
+            ...projectData,
+            services: projectData.services ? [...projectData.services, formattedService] : [formattedService]
+        }
+
+        handleSubmit(updatedProject)
     }
 
     function handleChange(e) {

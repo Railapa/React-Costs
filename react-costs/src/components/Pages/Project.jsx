@@ -45,7 +45,7 @@ export const Project = () => {
         }
 
         fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${id}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -61,44 +61,49 @@ export const Project = () => {
             .catch(err => console.log(err))
     }
 
-    function createService(project) {
+    function createService(projectData) {
     setMessage('')
 
-    if ((parseFloat(project.cost) || 0) >= parseFloat(project.budget)) {
+    const updatedProject = { ...projectData }
+    const updatedServices = [...(updatedProject.services || [])]
+    
+    if ((parseFloat(updatedProject.cost) || 0) >= parseFloat(updatedProject.budget)) {
         alert('Atenção: O orçamento deste projeto já foi 100% utilizado! Não é possível adicionar novos serviços.')
-        project.services.pop() 
         return false
     }
 
-    const lastService = project.services[project.services.length - 1]
+    const lastService = { ...updatedServices[updatedServices.length - 1] }
     lastService.id = uuidv4()
 
     const lastServiceCost = lastService.cost
-    const newCost = (parseFloat(project.cost) || 0) + parseFloat(lastServiceCost)
+    const newCost = (parseFloat(updatedProject.cost) || 0) + parseFloat(lastServiceCost)
 
-    if (newCost > parseFloat(project.budget)) {
+    if (newCost > parseFloat(updatedProject.budget)) {
         setMessage('Orçamento ultrapassado, verifique o valor do serviço.')
         setType('error')
-        project.services.pop()
         return false
     }
 
-    project.cost = newCost
+    updatedServices[updatedServices.length - 1] = lastService
+    updatedProject.services = updatedServices
+    updatedProject.cost = newCost
 
-    fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${project.id}`, {
-        method: 'PATCH',
+    fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${updatedProject.id}`, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(project),
-    }).then(resp => resp.json())
-        .then((data) => {
-            setProject(data)
-            setServices(data.services)
-            setMessage('Serviço adicionado com sucesso!')
-            setType('success')
-        })
-        .catch(err => console.log(err))
+        body: JSON.stringify(updatedProject),
+    })
+    .then(resp => resp.json())
+    .then((data) => {
+        setProject(data)
+        setServices(data.services)
+        setMessage('Serviço adicionado com sucesso!')
+        setType('success')
+        setShowServiceForm(false) 
+    })
+    .catch(err => console.log(err))
 }
 
     function removeService(id, cost) {
@@ -112,7 +117,7 @@ export const Project = () => {
         projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
 
         fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${projectUpdated.id}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },

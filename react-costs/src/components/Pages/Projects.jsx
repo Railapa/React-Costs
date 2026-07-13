@@ -9,8 +9,8 @@ import styles from './Projects.module.css'
 export const Projects = () => {
     const [projects, setProjects] = useState([])
     const [activeFilter, setActiveFilter] = useState('Todos')
+    const [projectMessage, setProjectMessage] = useState('')
     
-    // 1. ESTADO PARA A PESQUISA POR NOME
     const [searchTerm, setSearchTerm] = useState('')
 
     const location = useLocation()
@@ -34,6 +34,8 @@ export const Projects = () => {
     }, [])
 
     function removeProject(id) {
+        setProjectMessage('')
+
         fetch(`https://6a53d5038547b9f7111bd75e.mockapi.io/projects/${id}`, {
             method: 'DELETE',
             headers: {
@@ -43,16 +45,20 @@ export const Projects = () => {
         .then(resp => resp.json())
         .then(() => {
             setProjects(projects.filter((project) => project.id !== id))
+            setProjectMessage('Projeto removido com sucesso!')
+            
         })
         .catch(err => console.log(err))
     }
 
-    const filteredProjects = projects.filter((project) => {
+const filteredProjects = Array.isArray(projects) 
+    ? projects.filter((project) => {
         const matchesCategory = activeFilter === 'Todos' || project.category?.name === activeFilter
         const matchesName = project.name?.toLowerCase().includes(searchTerm.toLowerCase())
         
         return matchesCategory && matchesName
-    })
+      })
+    : [];
 
     return (
         <div className={styles.project_container}>
@@ -62,6 +68,7 @@ export const Projects = () => {
             </div>
 
             {message && <Message msg={message} type='success' />}
+            {projectMessage && <Message msg={projectMessage} type='success' />}
 
             <div className={styles.toolbar_container}>
                 <input 
