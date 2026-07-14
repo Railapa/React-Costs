@@ -74,7 +74,8 @@
   .project_card {
     width: 100% !important;
     max-width: 100% !important;
-    margin: 15px 0 !important; 
+    margin: 0 auto !important; 
+    justify-content: center !important;
     box-sizing: border-box;
   }
 }
